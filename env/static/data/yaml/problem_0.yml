@@ -1,0 +1,49 @@
+# - name:
+#     - Sum Array
+# - difficulty:
+#     - Easy
+# - description:
+#     - Given an array of integers nums add up all the integers in the array. You may assume that each input would have exactly one solution.
+# - example1:
+#     - input: nums = [1,3,4,5]
+#     - output: 13
+# - example2:
+#     - input: nums = [1]
+#     - output: 1
+# - contraints:
+#     - 1 <= n <= 100
+# - 0
+
+# - number
+# - name
+# - difficulty
+# - description
+# - block of input
+# - block of output
+# - block of constraints (have html styling inside of it)
+# There could be more of these
+# - real inputs w/o the extra (these will be comma separated and then through js we would do a split on them to get the formatting correct)
+# - real outputs
+# - function name
+
+- "0"
+- Sum Array
+- Easy
+- Given an array of integers nums add up all the integers in the array. You may assume that each input would have exactly one solution.
+- nums = [1,3,4,5]
+- "13"
+- nums = [1]
+- "1"
+- "[1,2,3,4]"
+- "10"
+- "[1]"
+- "1"
+- 1 <= n <= 100
+- "[1, 2, 3, 4]"
+- "10"
+- "[1]"
+- "1"
+- sum_array
+# or we could just have the file system be straight java?
+# need to also have all arrays be comma separated and with spaces ex: [1, 2, 3] (not the spaces)
+

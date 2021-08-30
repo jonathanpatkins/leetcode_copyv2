@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x"
+      crossorigin="anonymous"
+    />
+
+    <title>Coding Challenges</title>
+
+    <link rel="stylesheet" href="/static/css/codemirror.css" />
+
+    <link rel="stylesheet" href="/static/css/cobalt.css" />
+    <link rel="stylesheet" href="/static/css/monokai.css" />
+    <link rel="stylesheet" href="/static/css/solarized.css" />
+    <link rel="stylesheet" href="/static/css/yeti.css" />
+    <link rel="stylesheet" href="/static/css/blackboard.css" />
+    <link rel="stylesheet" href="/static/css/midnight.css" />
+    <link rel="stylesheet" href="/static/css/style.css" />
+
+    <!-- This is to get the data out to be used in other js files -->
+    <script>
+      var yaml_data = {{context | tojson}};
+    </script>
+  </head>
+
+  <body id="root">
+    <!-- navbar  -->
+    <nav
+      class="p-3"
+      id="nav-bar"
+      style="
+        width: 100vw;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+      "
+    >
+      <div class="nav nav-tabs" id="nav-tab" role="tablist">
+        <button
+          class="nav-link active"
+          id="nav-description-tab"
+          data-bs-toggle="tab"
+          data-bs-target="#nav-description"
+          type="button"
+          role="tab"
+          aria-controls="nav-description"
+          aria-selected="true"
+        >
+          Description
+        </button>
+        <button
+          class="nav-link"
+          id="nav-solution-tab"
+          data-bs-toggle="tab"
+          data-bs-target="#nav-solution"
+          type="button"
+          role="tab"
+          aria-controls="nav-solution"
+          aria-selected="false"
+        >
+          Solution
+        </button>
+        <button
+          class="nav-link"
+          style=""
+          id="nav-submission-tab"
+          data-bs-toggle="tab"
+          data-bs-target="#nav-submission"
+          type="button"
+          role="tab"
+          aria-controls="nav-submission"
+          aria-selected="false"
+        >
+          Submission
+        </button>
+
+        <div class="dropdown float-end mx-2">
+          <button
+            class="btn btn-secondary dropdown-toggle"
+            type="button"
+            id="dropdownMenuButton1"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+          >
+            Theme
+          </button>
+          <ul class="dropdown-menu" aria-labelledby="themeDropdownButton">
+            <li>
+              <a class="dropdown-item" href="#" onclick="changeTheme(0)"
+                >Default Light</a
+              >
+            </li>
+            <li>
+              <a class="dropdown-item" href="#" onclick="changeTheme(1)"
+                >Default Dark</a
+              >
+            </li>
+            <li>
+              <a class="dropdown-item" href="#" onclick="changeTheme(2)"
+                >Monokai</a
+              >
+            </li>
+            <li>
+              <a class="dropdown-item" href="#" onclick="changeTheme(3)"
+                >Cobalt</a
+              >
+            </li>
+            <li>
+              <a class="dropdown-item" href="#" onclick="changeTheme(4)"
+                >Solarized</a
+              >
+            </li>
+            <li>
+              <a class="dropdown-item" href="#" onclick="changeTheme(5)"
+                >Yeti</a
+              >
+            </li>
+            <li>
+              <a class="dropdown-item" href="#" onclick="changeTheme(6)"
+                >Midnight</a
+              >
+            </li>
+          </ul>
+        </div>
+
+        <div class="btn mx-1" id="darkmode-label">Dark Mode</div>
+      </div>
+
+      <!-- Rounded switch -->
+      <label class="switch">
+        <input
+          type="checkbox"
+          id="dark-toggle"
+          data-toggle="checkbox"
+          aria-pressed="true"
+          onclick="toggle()"
+        />
+        <span class="slider round"></span>
+      </label>
+    </nav>
+
+    <div style="display: flex; flex-direction: row" id="content-box">
+      <div class="tab-content col-md-6" id="nav-tabContent">
+        <!-- description tab  -->
+        <div
+          class="tab-pane fade show active"
+          id="nav-description"
+          role="tabpanel"
+          aria-labelledby="nav-home-tab"
+        >
+          <div class="">
+            <div class="p-4">
+              <h2>{{context[1]}}</h2>
+              <p id="difficulty">{{context[2]}}</p>
+              <hr />
+              <p>{{context[3]}}</p>
+              <br />
+              <h4>Example 1:</h4>
+              <div class="bg-light rounded p-3 problem-examples">
+                Input: {{context[4]}}
+                <br />
+                Output: {{context[5]}}
+              </div>
+              <br />
+              <h4>Example 2:</h4>
+              <div class="bg-light rounded p-3 problem-examples">
+                Input: {{context[6]}}
+                <br />
+                Output: {{context[7]}}
+              </div>
+              <!-- <h4>
+                            Constraints
+                        </h4>
+                
+                        <li>
+                            1 <= n <=105 </li> <li>
+                                nums.length == n + 1
+                        </li> -->
+            </div>
+          </div>
+        </div>
+
+        <!-- solution tab  -->
+        <div
+          class="tab-pane fade"
+          id="nav-solution"
+          role="tabpanel"
+          aria-labelledby="nav-profile-tab"
+        >
+          <div class="" style="display: flex; align-items: center">
+            <div class="p-5">
+              <h2>Solutions</h2>
+              <p>
+                Sorry, the solutions will not be released until the completion
+                of the competition
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- submission tab  -->
+        <div
+          class="tab-pane fade"
+          id="nav-submission"
+          role="tabpanel"
+          aria-labelledby="nav-contact-tab"
+        >
+          <div class="" style="display: flex; align-items: center">
+            <div class="p-5" id="UwU">
+              <h2>Submissions</h2>
+              <p>Nothing has been run yet UωU</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <!-- Create a simple CodeMirror instance -->
+        <div
+          id="cmblock"
+          style="height: 60vh; overflow: scroll; border: 1px solid gray"
+        ></div>
+
+        <!-- stdout area  -->
+        <h5 id="stdout">stdout</h5>
+        <div
+          class="p-3"
+          id="output"
+          style="
+            width: 48.5vw;
+            height: 18vh;
+            overflow-y: auto;
+            border: 1px solid grey;
+          "
+        ></div>
+      </div>
+    </div>
+
+    <!-- footer with the buttons  -->
+    <footer
+      class="bg-dark p-2"
+      id="footer"
+      style="position: absolute; bottom: 0; width: 100%;"
+    >
+    <!-- special menu  -->
+      <div class="menu-wrap">
+        <button
+        type="button"
+        id="problems"
+        style="margin-left: 1rem; z-index: 30; position: relative;"
+        class="btn btn-light footer-element"
+      >
+      ☰ Problems
+      </button>
+        <input type="checkbox" class="toggler">
+        
+        <div class="menu">
+          <div id="outerdiv">
+            <div id="innerdiv">
+              <ul>
+                <li><a href="/">Index</a></li>
+                <li><a href="/problem0/">0. Sum Array</a></li>
+                <li><a href="/problem1/">1. Detect Duplicates</a></li>
+                <li><a href="/problem2/">2. Two Sum</a></li>
+                <li><a href="/problem3/">3. Climbing Stairs</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+      <button
+        type="button"
+        onclick="prevPage()"
+        id="prev"
+        style="margin-left: 2rem"
+        class="btn btn-light footer-element"
+      >
+        Prev
+      </button>
+      <span class="px-2" id="page-number" style="color: white"> dummy </span>
+      <button
+        type="button"
+        onclick="nextPage()"
+        id="next"
+        class="btn btn-light footer-element"
+      >
+        Next
+      </button>
+
+      <button
+        type="button"
+        style="width: 10vw"
+        id="download"
+        class="btn btn-light float-end footer-element"
+      >
+        Download
+      </button>
+      <button
+        type="button"
+        style="margin-right: 0.25rem; width: 10vw"
+        id="run"
+        class="btn btn-success float-end"
+      >
+        Run
+      </button>
+    </footer>
+
+    <!-- Bootstrap Bundle with Popper -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4"
+      crossorigin="anonymous"
+    ></script>
+
+    <script src="/static/js/codemirror.js"></script>
+    <script src="/static/js/python.js"></script>
+    <script src="/static/js/comment.js"></script>
+    <script src="/static/js/autorefresh.js"></script>
+
+    <script src="/static/js/sublime.js"></script>
+    <script src="/static/js/code_editor.js"></script>
+    <script src="/static/js/javascript.js"></script>
+
+    <script src="/static/js/footer.js"></script>
+    <script src="/static/js/main.js"></script>
+
+    <!-- Dark mode: this should be at the bottom so all elements get switched. -->
+    <!-- <script src="https://cdn.jsdelivr.net/gh/fcmam5/nightly.js@v1.0/dist/nightly.min.js"></script> -->
+    <script src="/static/js/dark_mode.js"></script>
+  </body>
+</html>
