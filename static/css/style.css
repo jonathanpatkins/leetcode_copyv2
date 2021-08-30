@@ -134,6 +134,7 @@ input:checked + .slider:before {
 
 .menu {
   top: 0;
+  left: 200px;
   position: fixed;
   height: 100vh;
   visibility: hidden;
