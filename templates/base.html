@@ -29,6 +29,26 @@
     <script>
       var yaml_data = {{context | tojson}};
     </script>
+
+<style>
+  #loading {
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    opacity: 0.7;
+    background-color: #fff;
+    z-index: 99;
+  }
+
+  #loading-image {
+    z-index: 100;
+  }
+</style>
   </head>
 
   <body id="root">
@@ -335,5 +355,14 @@
     <!-- Dark mode: this should be at the bottom so all elements get switched. -->
     <!-- <script src="https://cdn.jsdelivr.net/gh/fcmam5/nightly.js@v1.0/dist/nightly.min.js"></script> -->
     <script src="/static/js/dark_mode.js"></script>
+
+    <script>
+      $(window).on("load", function () {
+        $("#loading").hide();
+      });
+    </script>
   </body>
+  <div id="loading">
+    <img id="loading-image" src="path/to/ajax-loader.gif" alt="Loading..." />
+  </div>
 </html>
